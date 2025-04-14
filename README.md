@@ -18,7 +18,7 @@ To run the Anger Management Awareness Wheel:
 
    Clone this repository to your local machine.
 
-  Open the index.html file in any browser.
+  Open the angerwheel.html file in any browser.
 
   Spin the wheel, take the quiz, and learn how to manage your anger better!
   
