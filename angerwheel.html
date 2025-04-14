@@ -9,56 +9,56 @@
     body {
       font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column; /* Stack items vertically */
+      flex-direction: column; 
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
       padding: 0;
       background-color: #f5f5dc;
-      background-image: url('ii.gif');
-      background-size: cover; /* Ensure the image covers the entire screen */
-      background-position: center top; /* Align background at the top center */
+      background-image: url('bg.gif');
+      background-size: cover;
+      background-position: center top; 
       background-repeat: no-repeat;
       position: relative;
-      background-size: contain; /* or 'cover' based on your need */
-      background-position: -4px top; /* move bg 50px to the left */
+      background-size: contain; 
+      background-position: -4px top; 
 }
     }
 
      #heading {
-      font-size: 3rem; /* Big font size */
-      font-weight: 900; /* Bold weight */
+      font-size: 3rem; 
+      font-weight: 900; 
       text-align: center;
       color: maroon;
-      letter-spacing: 2px; /* Slight spacing between letters */
-      text-transform: uppercase; /* Capitalize all letters */
-      text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 0, 0, 0.8); /* Glow effect */
+      letter-spacing: 2px; 
+      text-transform: uppercase; 
+      text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 0, 0, 0.8); 
       position: absolute;
-      top: 30px; /* Positioning the heading at the top */
+      top: 30px; 
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
     }
 
      h1 {
-      color: maroon; /* Font color to red */
-      font-family: 'Impact', sans-serif; /* Bold and impactful font */
-      font-size: 60px;  /* Increase the font size */
-      text-transform: uppercase; /* Uppercase for extra impact */
+      color: maroon; 
+      font-family: 'Impact', sans-serif; 
+      font-size: 60px;
+      text-transform: uppercase; 
       text-shadow: 
-        4px 4px 10px rgba(255, 255, 255, 0.6), /* White glow */
-        0 0 25px rgba(255, 255, 255, 0.5), /* White glow */
-        0 0 50px rgba(255, 255, 255, 0.7);  /* Stronger white glow */
-      margin-top: 20px;  /* Margin at the top */
+        4px 4px 10px rgba(255, 255, 255, 0.6), 
+        0 0 25px rgba(255, 255, 255, 0.5), 
+        0 0 50px rgba(255, 255, 255, 0.7);  
+      margin-top: 20px;
       padding: 20px;
-      text-align: center; /* Center text */
-      letter-spacing: 3px; /* Slightly increased spacing for dramatic effect */
+      text-align: center; 
+      letter-spacing: 3px; 
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translateX(-50%); /* Align heading to the top */
-      white-space: nowrap; /* Ensure the text stays on one line */
+      transform: translateX(-50%);
+      white-space: nowrap;
     }
 
  #spinner {
@@ -70,7 +70,7 @@
     top: 100px;
     right: 0;
     transform: translateY(5px);
-    transition: transform 0.5s ease-in-out; /* Faster spin */
+    transition: transform 0.5s ease-in-out; 
     background: conic-gradient(
      yellow 0deg,
      orange 60deg,
@@ -240,10 +240,10 @@
     </div>
   </div>
 
-  <!-- Result Box where anger level will be shown -->
+  
   <div class="result-box" id="result-box"></div>
 
-  <!-- Sound file for the wheel spin -->
+
   <audio id="spin-sound" src="spin-sound.mp3" preload="auto"></audio>
 
   <script>
@@ -277,7 +277,7 @@ function showAngerLevel(totalRotation) {
   info.style.display = 'none';
   info.innerHTML = '';
 
-  // Determine anger level based on the final rotation angle
+  
   if (degrees < 60 || degrees >= 300) {
     levelText.textContent = '😊 Low Anger (Yellow)';
     actionText.textContent = 'Practice deep-breathing exercises.';
@@ -325,7 +325,6 @@ function showAngerLevel(totalRotation) {
     return;
   }
 
-  // Calculate the score
   let score = 0;
   answers.forEach(answer => {
     if (answer.value === 'moderate') {
@@ -335,7 +334,7 @@ function showAngerLevel(totalRotation) {
     }
   });
 
-  // Decide the result based on score
+  
   let resultMessage = '';
   if (score <= 1) {
     resultMessage = '😊 Your anger level is Low. Keep practicing calm habits!';
