@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anger Level Spinner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5dc;
+      background-image: url('ii.gif');
+      background-size: cover; /* Ensure the image covers the entire screen */
+      background-position: center top; /* Align background at the top center */
+      background-repeat: no-repeat;
+      position: relative;
+      background-size: contain; /* or 'cover' based on your need */
+      background-position: -4px top; /* move bg 50px to the left */
+}
+    }
+
+     #heading {
+      font-size: 3rem; /* Big font size */
+      font-weight: 900; /* Bold weight */
+      text-align: center;
+      color: maroon;
+      letter-spacing: 2px; /* Slight spacing between letters */
+      text-transform: uppercase; /* Capitalize all letters */
+      text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 0, 0, 0.8); /* Glow effect */
+      position: absolute;
+      top: 30px; /* Positioning the heading at the top */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+     h1 {
+      color: maroon; /* Font color to red */
+      font-family: 'Impact', sans-serif; /* Bold and impactful font */
+      font-size: 60px;  /* Increase the font size */
+      text-transform: uppercase; /* Uppercase for extra impact */
+      text-shadow: 
+        4px 4px 10px rgba(255, 255, 255, 0.6), /* White glow */
+        0 0 25px rgba(255, 255, 255, 0.5), /* White glow */
+        0 0 50px rgba(255, 255, 255, 0.7);  /* Stronger white glow */
+      margin-top: 20px;  /* Margin at the top */
+      padding: 20px;
+      text-align: center; /* Center text */
+      letter-spacing: 3px; /* Slightly increased spacing for dramatic effect */
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%); /* Align heading to the top */
+      white-space: nowrap; /* Ensure the text stays on one line */
+    }
+
+ #spinner {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    transform: translateY(5px);
+    transition: transform 0.5s ease-in-out; /* Faster spin */
+    background: conic-gradient(
+     yellow 0deg,
+     orange 60deg,
+     red 120deg,
+     darkred 180deg,
+     black 240deg,
+     yellow 300deg
+    );
+   }
+
+   #arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #000;
+   }
+
+   .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+   }
+
+    .popup-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .links-and-quiz-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 14px;
+      max-width: 300px;
+    }
+
+    .links-and-quiz-container h3 {
+      margin-top: 0;
+    }
+
+    .links-and-quiz-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .links-and-quiz-container li {
+      margin-bottom: 5px;
+    }
+
+    .links-and-quiz-container a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .links-and-quiz-container a:hover {
+      text-decoration: underline;
+    }
+
+    #quiz-container {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #quiz-container label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #quiz-container button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    .result-box {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 400px;
+      text-align: center;
+      font-size: 16px;
+      display: none;
+    }
+  </style>
+</head>
+ 
+  <h1 id="heading">ANGER MANAGEMENT AWARENESS WHEEL</h1>
+
+  <div id="spinner" onclick="spinWheel()">
+    <div id="arrow"></div>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="popup-card">
+      <h2>Anger Level</h2>
+      <p id="anger-level-text">Anger level explanation goes here.</p>
+      <p id="anger-level-action">Action to take goes here.</p>
+      <button onclick="displayAdditionalInfo()">Additional Info</button>
+      <div id="additional-info" style="display:none;"></div>
+      <br><br>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <div class="links-and-quiz-container">
+    <h3>Anger Management Videos:</h3>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=C1N4f1F0vDU" target="_blank">Video 1</a></li>
+      <li><a href="https://www.youtube.com/watch?v=hCIfi-xvjgE" target="_blank">Video 2</a></li>
+      <li><a href="https://youtu.be/BsVq5R_F6RA" target="_blank">Video 3</a></li>
+    </ul>
+
+    <h3>Quiz to Know Your Anger Level:</h3>
+    <ul>
+      <li><a href="#" onclick="displayQuiz()">Take the Quiz</a></li>
+    </ul>
+
+    <div id="quiz-container">
+      <h4>How often do you feel irritated?</h4>
+      <div class="question">
+        <label><input type="radio" name="anger1" value="low" /> Rarely</label>
+        <label><input type="radio" name="anger1" value="moderate" /> Sometimes</label>
+        <label><input type="radio" name="anger1" value="high" /> Often</label>
+      </div>
+      <h4>When you're angry, how do you react?</h4>
+      <div class="question">
+        <label><input type="radio" name="anger2" value="low" /> Stay calm and composed</label>
+        <label><input type="radio" name="anger2" value="moderate" /> Express it verbally</label>
+        <label><input type="radio" name="anger2" value="high" /> Express it physically</label>
+      </div>
+      <h4>How quickly do you cool down after being angry?</h4>
+      <div class="question">
+        <label><input type="radio" name="anger3" value="low" /> Quickly</label>
+        <label><input type="radio" name="anger3" value="moderate" /> Takes a while</label>
+        <label><input type="radio" name="anger3" value="high" /> It takes a long time</label>
+      </div>
+      <button type="button" onclick="submitQuiz()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Result Box where anger level will be shown -->
+  <div class="result-box" id="result-box"></div>
+
+  <!-- Sound file for the wheel spin -->
+  <audio id="spin-sound" src="spin-sound.mp3" preload="auto"></audio>
+
+  <script>
+    let spinning = false;
+    let lastDegrees = 0;
+
+    function spinWheel() {
+  if (!spinning) {
+    const spinner = document.getElementById('spinner');
+    const spinSound = document.getElementById('spin-sound');
+    spinSound.play();
+    const degrees = Math.floor(Math.random() * 360 + 1440);
+    spinner.style.transform = `rotate(${degrees}deg)`;
+    spinning = true;
+
+    setTimeout(() => {
+      spinning = false;
+      showAngerLevel(degrees);
+    }, parseFloat(getComputedStyle(spinner).transitionDuration) * 1000); // Synchronize with CSS
+  }
+}
+
+function showAngerLevel(totalRotation) {
+  const degrees = totalRotation % 360;
+  const popup = document.getElementById('popup');
+  const levelText = document.getElementById('anger-level-text');
+  const actionText = document.getElementById('anger-level-action');
+  const info = document.getElementById('additional-info');
+
+  popup.style.display = 'flex';
+  info.style.display = 'none';
+  info.innerHTML = '';
+
+  // Determine anger level based on the final rotation angle
+  if (degrees < 60 || degrees >= 300) {
+    levelText.textContent = '😊 Low Anger (Yellow)';
+    actionText.textContent = 'Practice deep-breathing exercises.';
+    info.innerHTML = `
+      <ul>
+       <li>4-7-8 Breathing</li>
+       <li>Alternate Nostril Breathing</li>
+       <li>Box Breathing</li>
+      </ul>`;
+  } else if (degrees < 120) {
+    levelText.textContent = '😐 Moderate Anger (Orange)';
+    actionText.textContent = 'Repeat calming words like "Take it easy".';
+    info.innerHTML = `<p>"This too shall pass."</p>`;
+  } else if (degrees < 180) {
+    levelText.textContent = '😡 High Anger (Red)';
+    actionText.textContent = 'Find a quiet space to calm down.';
+    info.innerHTML = `<p>Consider taking a break or doing something physical.</p>`;
+  } else {
+    levelText.textContent = '😤 Very High Anger (Dark Red)';
+    actionText.textContent = 'Take time to cool down and reflect.';
+    info.innerHTML = `<p>Anger management therapy may help.</p>`;
+  }
+}    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('result-box').style.display = 'block';
+    }
+
+    function displayAdditionalInfo() {
+      document.getElementById('additional-info').style.display = 'block';
+    }
+
+    function displayQuiz() {
+      document.getElementById('quiz-container').style.display = 'block';
+    }
+   function submitQuiz() {
+  const answers = [
+    document.querySelector('input[name="anger1"]:checked'),
+    document.querySelector('input[name="anger2"]:checked'),
+    document.querySelector('input[name="anger3"]:checked')
+  ];
+
+  // Check if all questions are answered
+  if (answers.includes(null)) {
+    alert('Please answer all questions before submitting.');
+    return;
+  }
+
+  // Calculate the score
+  let score = 0;
+  answers.forEach(answer => {
+    if (answer.value === 'moderate') {
+      score += 1;
+    } else if (answer.value === 'high') {
+      score += 2;
+    }
+  });
+
+  // Decide the result based on score
+  let resultMessage = '';
+  if (score <= 1) {
+    resultMessage = '😊 Your anger level is Low. Keep practicing calm habits!';
+  } else if (score <= 3) {
+    resultMessage = '😐 Your anger level is Moderate. Try mindfulness or breathing techniques.';
+  } else {
+    resultMessage = '😡 Your anger level is High. Consider practicing anger management strategies.';
+  }
+
+  // Show result box
+  const resultBox = document.getElementById('result-box');
+  resultBox.textContent = resultMessage;
+  resultBox.style.display = 'block';
+}
+
+   
+  </script>
+</body>
+</html>
+
+
+
