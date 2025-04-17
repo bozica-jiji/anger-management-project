@@ -1,7 +1,5 @@
 # anger-management-project
-🚨 Anger Management
-
-nt Awareness Wheel 🚨
+🚨 Anger Management Awareness Wheel 🚨
 
 Welcome to the Anger Management Awareness Wheel! This interactive tool helps you understand your anger levels in a fun and engaging way. Spin the wheel and get personalized feedback on 
 how to manage your emotions effectively. Perfect for learning how to stay calm in challenging situations!
